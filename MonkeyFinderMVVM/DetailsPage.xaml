@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MonkeyFinderMVVM.DetailsPage"
+             xmlns:viewmodel="clr-namespace:MonkeyFinderMVVM.ViewModel"
+             x:DataType="viewmodel:DetailsViewModel"
+             Title="{Binding Monkey.Name}">
+    
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="{Binding Monkey.Details}" />
+            <Image Source="{Binding Monkey.Image}" Aspect="AspectFill" HeightRequest="150" WidthRequest="150"
+
+                   VerticalOptions="Center"/>
+            <Label Text="{Binding Monkey.Location}" />
+            <Button Text="Show on map" Command="{Binding OpenMapCommand}" HorizontalOptions="Center"
+
+                    WidthRequest="200" Margin="10"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+ 
+ 
+ 

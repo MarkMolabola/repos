@@ -1,0 +1,77 @@
+﻿@page "/addNew"
+@using Daycare_Management.Models
+@using Daycare_Management.Services
+@inject ICRUD<Child> ChildService
+@inject ICRUD<Guardian> GuardianService
+
+
+<h1>Add New Child</h1>
+
+<EditForm Model="@newChild" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>First Name</label>
+        <InputText class="form-control" @bind-Value="newChild.FirstName" />
+    </div>
+
+    <div class="form-group">
+        <label>Last Name</label>
+        <InputText class="form-control" @bind-Value="newChild.LastName" />
+    </div>
+
+    <div class="form-group">
+        <label>Date of Birth</label>
+        <InputDate class="form-control" @bind-Value="newChild.DateofBirth" />
+    </div>
+
+    <div class="form-group">
+        <label>Guardian ID</label>
+        <InputDate class="form-control" @bind-Value="newChild.GuardianID" />
+    </div>
+    
+    <hr />
+    <h5>Guardian Information</h5>
+     
+    <div class="form-group">
+        <label>Full Name</label>
+        <InputText class="form-control" @bind-Value="newGuardian.FullName" />
+    </div>
+
+    <div class="form-group">
+        <label>Phone Number</label>
+        <InputNumber class="form-control" @bind-Value="newGuardian.PhoneNumber" />
+    </div>
+
+    <div class="form-group">
+        <label>Address</label>
+        <InputText class="form-control" @bind-Value="newGuardian.Address" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Child</button>
+</EditForm>
+
+
+@code{
+
+    private Child newChild = new();
+    private Guardian newGuardian = new();
+
+    private void HandleValidSubmit()
+    {
+        var tempChild = new Child
+        {
+            FirstName = newChild.FirstName,
+            LastName = newChild.LastName,
+            DateofBirth = newChild.DateofBirth,
+            GuardianID = newChild.GuardianID
+          
+        };
+
+        ChildService.Add(tempChild);
+        //Navigation.NavigateTo("/children");
+    }
+    
+
+}

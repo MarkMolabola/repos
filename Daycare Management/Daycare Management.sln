@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daycare Management", "Daycare Management.csproj", "{BBF4D688-156A-4AEA-A830-75F1076126DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBF4D688-156A-4AEA-A830-75F1076126DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF4D688-156A-4AEA-A830-75F1076126DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF4D688-156A-4AEA-A830-75F1076126DA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BBF4D688-156A-4AEA-A830-75F1076126DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF4D688-156A-4AEA-A830-75F1076126DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF4D688-156A-4AEA-A830-75F1076126DA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0D51F425-BB5A-4822-A25C-BA72D7D6574E}
+	EndGlobalSection
+EndGlobal
