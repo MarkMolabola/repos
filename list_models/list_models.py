@@ -1,0 +1,9 @@
+
+import google.genai as genai
+import os
+
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+
+print("Available models:\n")
+for m in client.models.list():
+    print("-", m.name)
