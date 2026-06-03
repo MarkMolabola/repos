@@ -1,0 +1,93 @@
+﻿@page "/Calendar"
+@using FinalProjApp.Models
+@using FinalProjApp.Services
+@using Syncfusion.Blazor
+@using Syncfusion.Blazor.Schedule
+
+@inject ICRUD<ScheduleEvent> EventService
+<h3>Calendar</h3>
+
+
+
+@if (Events != null)
+{
+    <SfSchedule TValue="ScheduleEvent" SelectedDate="@DateTime.Today" Height="auto" Width="100%">
+        <ScheduleViews>
+            <ScheduleView Option="View.Month"></ScheduleView>
+            <ScheduleView Option="View.Week"></ScheduleView>
+            <ScheduleView Option="View.Day"></ScheduleView>
+        </ScheduleViews>
+        <ScheduleEventSettings TValue="ScheduleEvent" DataSource="@Events" />
+    </SfSchedule>
+}
+
+
+@code
+{
+    private ScheduleEvent scheduleEvent = new ();
+    // public int Id { get; set; }
+    // public string Subject { get; set; }
+    // public string Location { get; set; }
+    // public string Description { get; set; }
+    // public DateTime StartTime { get; set; }
+    // public DateTime EndTime { get; set; }
+    // public bool IsAllDay { get; set; }
+    List<ScheduleEvent> Events = new();
+
+    private bool _hasLoadedEvents = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && !_hasLoadedEvents)
+        {
+            _hasLoadedEvents = true;
+
+            try
+            {
+                Events = await EventService.GetList() ?? new List<ScheduleEvent>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading events: {ex.Message}");
+                Events = new List<ScheduleEvent>();
+            }
+
+            StateHasChanged(); // Optional: triggers re-render if needed
+        }
+    }
+
+    private async Task HandleCellClick(Syncfusion.Blazor.Schedule.CellClickEventArgs args)
+    {
+        
+        try
+        {
+            Console.WriteLine("Cell clicked");
+
+            var newEvent = new ScheduleEvent
+            {
+                Subject = "DaycareTime",
+                StartTime = args.StartTime,
+                EndTime = args.StartTime.AddHours(1),
+                Description = "Nap Time",
+                Location = "Home",
+                ChildId = 2
+            };
+
+            Console.WriteLine("Creating event...");
+            await EventService.Add(newEvent);
+            Console.WriteLine("Event created.");
+
+            Events = await EventService.GetList() ?? new List<ScheduleEvent>();
+            Console.WriteLine("Events loaded: " + Events.Count);
+
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Runtime error: " + ex.Message);
+            Console.WriteLine("Stack trace: " + ex.StackTrace);
+        }
+    }
+}
+
+    
